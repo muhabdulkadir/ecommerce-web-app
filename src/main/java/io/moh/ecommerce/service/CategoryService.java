@@ -4,20 +4,41 @@ import io.moh.ecommerce.model.Category;
 import io.moh.ecommerce.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class CategoryService {
 
-    private CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
 
-    CategoryService(CategoryRepository categoryRepository) {
+    public CategoryService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
 
-    public Category getCategory(String categoryName) {
-        return categoryRepository.findByCategoryName(categoryName);
-    }
 
     public void createCategory(Category category) {
         categoryRepository.save(category);
+    }
+
+    public void updateCategory(int categoryId, Category newCategory) {
+        Category category = categoryRepository.findById(categoryId).get();
+        category.setCategoryName(newCategory.getCategoryName());
+        category.setDescription(newCategory.getDescription());
+        category.setImageUrl(newCategory.getImageUrl());
+        categoryRepository.save(category);
+    }
+
+    public List<Category> getAllCategories() {
+        return categoryRepository.findAll();
+    }
+
+    public Category getCategoryByName(String categoryName) {
+        return categoryRepository.findByCategoryName(categoryName);
+    }
+
+
+    public Optional<Category> getCategoryById(int categoryId) {
+        return categoryRepository.findById(categoryId);
     }
 }
