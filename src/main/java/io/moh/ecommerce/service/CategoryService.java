@@ -22,11 +22,13 @@ public class CategoryService {
     }
 
     public void updateCategory(int categoryId, Category newCategory) {
-        Category category = categoryRepository.findById(categoryId).get();
-        category.setCategoryName(newCategory.getCategoryName());
-        category.setDescription(newCategory.getDescription());
-        category.setImageUrl(newCategory.getImageUrl());
-        categoryRepository.save(category);
+        categoryRepository.findById(categoryId)
+                .ifPresent(category -> {
+                    category.setCategoryName(newCategory.getCategoryName());
+                    category.setDescription(newCategory.getDescription());
+                    category.setImageUrl(newCategory.getImageUrl());
+                    categoryRepository.save(category);
+                });
     }
 
     public List<Category> getAllCategories() {
