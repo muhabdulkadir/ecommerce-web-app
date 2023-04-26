@@ -51,4 +51,10 @@ public class ProductController {
             }
         }).orElse(new ResponseEntity<>(new ApiResponse(false, "category is invalid"), HttpStatus.CONFLICT));
     }
+
+    @DeleteMapping
+    public ResponseEntity<ApiResponse> deleteAllProducts() {
+        productService.deleteAllProducts();
+        return new ResponseEntity<>(new ApiResponse(true, "all products deleted"), HttpStatus.OK);
+    }
 }

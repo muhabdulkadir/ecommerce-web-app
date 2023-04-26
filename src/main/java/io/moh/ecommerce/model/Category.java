@@ -24,11 +24,6 @@ public class Category {
     public Category() {
     }
 
-    public Category(@NotBlank String categoryName, @NotBlank String description) {
-        this.categoryName = categoryName;
-        this.description = description;
-    }
-
     public Category(@NotBlank String categoryName, @NotBlank String description, @NotBlank String imageUrl) {
         this.categoryName = categoryName;
         this.description = description;

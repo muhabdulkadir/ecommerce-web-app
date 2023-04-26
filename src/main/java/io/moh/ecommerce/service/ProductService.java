@@ -41,6 +41,10 @@ public class ProductService {
                 .collect(Collectors.toList());
     }
 
+    public void deleteAllProducts() {
+        productRepository.deleteAll();
+    }
+
     private static Product getProductFromDto(ProductDto productDto, Category category) {
         return new Product(productDto.getProductName(),
                 productDto.getImageUrl(),
