@@ -36,30 +36,30 @@ import swal from 'sweetalert'
 
 export default {
   data(){
-        return {
-            categoryName : null,
-            description : null,
-            imageURL : null,
-        }
+    return {
+      categoryName : null,
+      description : null,
+      imageURL : null,
+    }
   },
   methods : {
-        async addCategory() {
-            const newCategory = {
-                categoryName: this.categoryName,
-                description: this.description,
-                imageURL: this.imageURL,
-            }
+    async addCategory() {
+      const newCategory = {
+        categoryName: this.categoryName,
+        description: this.description,
+        imageURL: this.imageURL,
+      }
 
-            const baseURL = "http://localhost:8080/";
+      const baseURL = "http://localhost:8080/";
 
-            await axios({
-                method: 'post',
-                url: baseURL+"category",
-                data: JSON.stringify(newCategory),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
+      await axios({
+        method: 'post',
+        url: baseURL+"category",
+        data: JSON.stringify(newCategory),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
       .then( () => {
         swal({
           text: "Category Added Successfully!",
