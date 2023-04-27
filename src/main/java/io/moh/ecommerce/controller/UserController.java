@@ -1,7 +1,10 @@
 package io.moh.ecommerce.controller;
 
+import io.moh.ecommerce.dto.users.SignInDto;
+import io.moh.ecommerce.dto.users.SignInResponseDto;
 import io.moh.ecommerce.dto.users.SignUpDto;
 import io.moh.ecommerce.dto.users.SignUpResponseDto;
+import io.moh.ecommerce.exceptions.AuthenticationFailException;
 import io.moh.ecommerce.exceptions.CustomException;
 import io.moh.ecommerce.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,5 +23,10 @@ public class UserController {
     @PostMapping("/signup")
     public SignUpResponseDto Signup(@RequestBody SignUpDto signUpDto) throws CustomException {
         return userService.signUp(signUpDto);
+    }
+
+    @PostMapping("/signin")
+    public SignInResponseDto signIn(@RequestBody SignInDto signInDto) throws CustomException, AuthenticationFailException {
+        return userService.signIn(signInDto);
     }
 }
